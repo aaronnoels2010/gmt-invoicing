@@ -1,0 +1,27 @@
+<div class="flex items-center gap-2 ml-2 mt-4" (dblclick)="deleteProjectLine()">
+  <input [(ngModel)]="projectLine.startTimeString" type="time" class="input" />
+  <input [(ngModel)]="projectLine.endTimeString" type="time" class="input" />
+  <input [(ngModel)]="projectLine.dateString" type="date" class="input" format/>
+  <div (click)="toggleHoliday()" class="badge badge-soft cursor-pointer" [ngClass]="{'badge-success': projectLine.isHoliday, 'badge-error': !projectLine.isHoliday}">{{'Holiday'}}</div>
+  <div class="flex flex-grow justify-end">
+    <button (click)="moveProjectLineUp()" class="btn btn-circle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
+    <button (click)="moveProjectLineDown()" class="btn btn-circle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <button (click)="copyProjectLine()" class="btn btn-circle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+    </button>
+  </div>
+</div>

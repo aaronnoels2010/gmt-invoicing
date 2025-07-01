@@ -2,6 +2,8 @@
   <input [(ngModel)]="projectLine.startTimeString" type="time" class="input" />
   <input [(ngModel)]="projectLine.endTimeString" type="time" class="input" />
   <input [(ngModel)]="projectLine.dateString" type="date" class="input" format/>
+  <input [(ngModel)]="projectLine.endDateString" type="date" class="input" format/>
+  <span>{{ calculateTotalCost() }}</span>
   <div (click)="toggleHoliday()" class="badge badge-soft cursor-pointer" [ngClass]="{'badge-success': projectLine.isHoliday, 'badge-error': !projectLine.isHoliday}">{{'Holiday'}}</div>
   <div class="flex flex-grow justify-end">
     <button (click)="moveProjectLineUp()" class="btn btn-circle">

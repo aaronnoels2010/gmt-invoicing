@@ -5,12 +5,16 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": [
+      "node", "big.js"
+    ],
     "paths": {
       "@components/*": ["src/app/components/*"],
       "@models/*": ["src/app/models/*"],
       "@modules/*": ["src/app/modules/*"],
+      "@routes/*": ["src/app/routes/*"],
       "@services/*": ["src/app/services/*"],
+      "@utils/*": ["src/app/utils/*"],
       "@env/*": ["src/app/views/*"]
     }
   },

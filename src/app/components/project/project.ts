@@ -1,27 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, input, Signal } from '@angular/core';
 import { CoreModule } from '@modules/core/core-module';
-import { ProjectLine } from '@components/project-line/project-line';
+import { ProjectLineComponent } from '@components/project-line/project-line';
 import { InvoiceService } from '@services/invoice.service';
-import { Invoice } from '@models/invoice.model';
+import { FormsModule } from '@angular/forms';
+import { Project } from '@models/project.model';
 
 @Component({
+  host: {
+    class: 'flex flex-grow',
+  },
   selector: 'app-project',
-  imports: [CoreModule, ProjectLine],
+  imports: [CoreModule, FormsModule, ProjectLineComponent],
   templateUrl: './project.html',
   styleUrl: './project.css',
 })
-export class Project {
-  invoice: Invoice;
+export class ProjectComponent {
+  project = input<Project>(new Project(''));
 
-  constructor(private invoiceService: InvoiceService) {
-    this.invoice = this.invoiceService.invoice;
-  }
-
-  addProject() {
-    this.invoiceService.addProject();
-  }
-
-  deleteProject(id: string) {
-    this.invoiceService.deleteProject(id);
-  }
 }

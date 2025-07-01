@@ -1,0 +1,21 @@
+<div class="flex flex-1 flex-col mb-4">
+                    <h3 class="font-bold text-red-700 text-center">{{project().name}}</h3>
+                    <table class="table-auto">
+                        <thead>
+                        <tr>
+                            <th class="text-left text-slate-500 w-[112px]">Start Tijd</th>
+                            <th class="text-left text-slate-500 w-[112px]">Eind Tijd</th>
+                            <th class="text-left text-slate-500 w-[112px]">Uren gewerkt</th>
+                            <th class="text-left text-slate-500 w-[112px]">Prijs</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let invoiceLine of project().projectLines; let index = index;">
+                                <td class="text-slate-500">{{formatDate(invoiceLine.date) + ' ' + formatTime(invoiceLine.startTime)}}</td>
+                                <td class="text-slate-500">{{formatDate(invoiceLine.endDate) + ' ' + formatTime(invoiceLine.endTime)}}</td>
+                                <td class="text-slate-500">{{calculateTotalHoursWorked(invoiceLine)}}</td>
+                                <td class="text-slate-500">{{calculateTotalCost(invoiceLine)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>

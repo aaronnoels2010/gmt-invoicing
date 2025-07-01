@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from '@modules/core/core-module';
 import { ProjectLine as ProjectLineType } from '@models/project-line.model';
 import { InvoiceService } from '@services/invoice.service';
+import { ProjectLineCostService } from '@services/project-line-cost.service';
+import { rateSchedule } from '@models/rate.model';
 
 @Component({
   selector: 'app-project-line',
@@ -10,30 +12,23 @@ import { InvoiceService } from '@services/invoice.service';
   templateUrl: './project-line.html',
   styleUrl: './project-line.css',
 })
-export class ProjectLine {
+export class ProjectLineComponent {
   @Input()
   projectLine: ProjectLineType = new ProjectLineType('');
 
-  constructor(private invoiceService: InvoiceService) {}
-
-  public handleClick() {
-    console.log('Invoice line clicked: ' + this.projectLine.startTime);
+  constructor(
+    private invoiceService: InvoiceService,
+    private projectLineCostService: ProjectLineCostService
+  ) {
+    console.log(this.projectLine);
   }
 
   toggleHoliday() {
     this.projectLine.isHoliday = !this.projectLine.isHoliday;
+    this.projectLineCostService.calculateTotalCost(55, this.projectLine);
   }
 
   copyProjectLine() {
-    console.log(
-      'Copying project line:',
-      this.projectLine.startTime.toISOString()
-    );
-    console.log(
-      'Copying project line:',
-      this.projectLine.endTime.toISOString()
-    );
-    console.log('Copying project line:', this.projectLine.date.toISOString());
     this.invoiceService.duplicateProjectLine(this.projectLine);
   }
 
@@ -45,12 +40,18 @@ export class ProjectLine {
   }
 
   moveProjectLineUp() {
-    console.log('Moving project line up:', this.projectLine.startTime);
     this.invoiceService.moveProjectLineUp(this.projectLine);
   }
 
   moveProjectLineDown() {
-    console.log('Moving project line down:', this.projectLine.startTime);
     this.invoiceService.moveProjectLineDown(this.projectLine);
+  }
+
+  calculateTotalCost(): string {
+    return this.projectLineCostService.calculateCostBasedOnRateString(
+      this.projectLine.startTime,
+      this.projectLine.endTime,
+      rateSchedule(55)
+    );
   }
 }

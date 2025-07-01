@@ -1,0 +1,16 @@
+<div class="flex flex-col justify-between print-a4">
+    <div class="flex flex-grow">
+        <div class="flex items-center border-r-2 border-r-red-700 px-2">
+            <span class="text-3xl rotate-180" [ngStyle]="{writingMode: 'vertical-lr'}">Factuur&nbsp;<span class="text-red-700">[{{ invoice().detail.invoiceNumber }}]</span></span>
+        </div>
+        <div class="pl-8 flex flex-grow flex-col">
+            <h1 class="text-red-700 text-center text-2xl">GMT</h1>
+            <app-invoice-sender-summary [sender]="invoice().detail.sender"></app-invoice-sender-summary>
+            <app-invoice-receiver-summary [receiver]="invoice().detail.receiver"></app-invoice-receiver-summary>
+            <app-invoice-instructions [accountNumber]="invoice().detail.sender.accountNumber" [invoiceNumber]="invoice().detail.invoiceNumber"></app-invoice-instructions>
+            <app-invoice-project *ngFor="let project of invoice().projects" [project]="project"></app-invoice-project>
+            <app-invoice-total [payableDate]="invoice().detail.invoiceDate"></app-invoice-total>
+            <app-invoice-footer></app-invoice-footer>
+        </div>
+    </div>
+</div>

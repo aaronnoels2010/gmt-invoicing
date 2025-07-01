@@ -1,3 +1,7 @@
 <div>
-  <app-project></app-project>
+  <div class="flex flex-col gap-2 ml-2">
+  <div><button (click)="downloadInvoice()" class="btn">Download invoice</button></div>
+  <div><input type="file" class="file-input" (change)="importInvoice($event)" /></div>
+</div>
+  <a class="cursor-pointer" [routerLink]="invoiceProjectsUrl">View Projects</a>
 </div>

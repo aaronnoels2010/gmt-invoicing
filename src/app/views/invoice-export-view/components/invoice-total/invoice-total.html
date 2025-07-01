@@ -1,0 +1,12 @@
+<div class="mt-4 flex flex-row justify-end">
+        <div class="flex flex-col">
+            <span class="mr-16 font-bold font-bold text-slate-500 mr-2">Subtotaal</span>
+            <span class="mr-16 font-bold font-bold text-slate-500 mr-2">BTW</span>
+            <span class="mr-16 font-bold font-bold text-slate-500 mr-2">Totaal verschuldigd voor {{formatDate(payableDate())}}</span>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold text-slate-500 mr-2">{{totalPrice()}}</span>
+            <span class="font-bold text-slate-500 mr-2">/</span>
+            <span class="font-bold text-slate-500 mr-2">{{totalPrice()}}</span>
+        </div>
+    </div>

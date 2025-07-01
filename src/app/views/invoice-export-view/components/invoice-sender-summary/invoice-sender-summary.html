@@ -1,0 +1,27 @@
+<div class="flex">
+  <div class="flex flex-1 flex-col mb-4">
+      <div class="flex items-center mb-2">
+          <span class="font-bold text-slate-500 mr-2">Naam</span>
+          <span class="text-slate-500">{{ sender().name }}</span>
+      </div>
+      <div class="flex items-center mb-2">
+          <span class="font-bold text-slate-500 mr-2">E-mail</span>
+          <span class="text-slate-500">{{ sender().email }}</span>
+      </div>
+      <div class="flex items-center mb-2">
+          <span class="font-bold text-slate-500 mr-2">Adres</span>
+          <span class="font-bold text-red-700">{{ sender().address }}</span>
+      </div>
+      <div class="flex items-center mb-2">
+          <span class="font-bold text-slate-500 mr-2">Telefoon</span>
+          <span class="text-slate-500">{{ sender().phone }}</span>
+      </div>
+      <div class="flex items-center">
+          <span class="font-bold text-slate-500 mr-2">Ondernemingsnummer</span>
+          <span class="text-slate-500">{{ sender().enterpriseNumber }}</span>
+      </div>
+  </div>
+  <div class="pr-16">
+      <img src="/public/images/nurse.png" alt="nurse" />
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">{{ legend() }}</legend>
+  <label class="input">
+     <ng-content select="svg.input-icon"></ng-content>
+    <input [type]="type()" [placeholder]="placeholder()" [value]="value" (input)="onInput($event)" (blur)="onTouched()" [disabled]="disabled()"/>
+  </label>
+  <p *ngIf="isOptional()" class="label">Optional</p>
+</fieldset>

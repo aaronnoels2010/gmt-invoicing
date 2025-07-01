@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Invoice } from '@models/invoice.model';
 import { ProjectLine } from '@models/project-line.model';
 import { Project } from '@models/project.model';
@@ -8,8 +8,36 @@ import { Project } from '@models/project.model';
 })
 export class InvoiceService {
   public invoice: Invoice = new Invoice();
+  public invoiceSignal = signal<Invoice>(this.invoice);
 
   constructor() {}
+
+  exportToJsonFile() {
+    const dataStr = JSON.stringify(this.invoice, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'invoice.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  importFromJsonFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const jsonData = JSON.parse(event.target?.result as string);
+        this.invoice = Invoice.fromObject(jsonData);
+        this.invoiceSignal.set(this.invoice);
+      } catch (error) {
+        console.error('Error parsing JSON file:', error);
+      }
+    };
+    reader.readAsText(file);
+  }
 
   // Project
   addProject() {
